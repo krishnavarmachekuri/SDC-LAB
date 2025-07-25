@@ -1,0 +1,8 @@
+def count_characters(input_string):
+    # Counting the number of characters in the input string
+    character_count = len(input_string)
+    return character_count
+
+# Example usage
+input_string = "Hello, World!"
+print(f"The number of characters is: {count_characters(input_string)}")
