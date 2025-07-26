@@ -1,0 +1,31 @@
+class Item:
+    def __init__(self, value, weight):
+        self.value = value
+        self.weight = weight
+        self.ratio = value / weight
+
+def fractional_knapsack(items, capacity):
+    # Sort items by value-to-weight ratio
+    items.sort(key=lambda x: x.ratio, reverse=True)
+    
+    total_value = 0.0
+    for item in items:
+        if capacity >= item.weight:
+            capacity -= item.weight
+            total_value += item.value
+        else:
+            # Take fraction of the item
+            total_value += item.ratio * capacity
+            break  # Knapsack is full
+    
+    return total_value
+
+# Example usage
+values = [60, 100, 120]
+weights = [10, 20, 30]
+capacity = 50
+
+items = [Item(v, w) for v, w in zip(values, weights)]
+max_value = fractional_knapsack(items, capacity)
+
+print(f"Maximum value in Knapsack = {max_value:.2f}")
